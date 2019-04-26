@@ -1,54 +1,62 @@
-export interface IGene
+import { HeadsList, BodiesList, ArmsList, LegsList, TailsList, WingsList, IGene } from './genes';
+
+export interface IGeneSequence
 {
 	Orientation: IOrientation;
 	Height: IHeight;
 	Color: string;
-	Head: string;
-	Torso1: string;
-	Torso2?: string;
-	Arm1?: string;
-	Arm2?: string;
-	Arm3?: string;
-	Arm4?: string;
-	Leg1?: string;
-	Leg2?: string;
-	Wing?: string;
-	Tail?: string;
+	Strength: number;
+	Health: number;
+	Speed: number;
+	Defense: number;
+	Magic: number;
+	Head: IGene;
+	Torso1: IGene;
+	Torso2?: IGene;
+	Arm1?: IGene;
+	Arm2?: IGene;
+	Arm3?: IGene;
+	Arm4?: IGene;
+	Leg1?: IGene;
+	Leg2?: IGene;
+	Wing?: IGene;
+	Tail?: IGene;
 }
 
 export type IOrientation = 'Horizontal' | 'Vertical';
 export type IHeight = 'Short' | 'Tall';
 
-export class Gene implements IGene
+export class Gene implements IGeneSequence
 {
 	protected _orientation: IOrientation;
 	protected _height: IHeight;
 	protected _color: string;
-	protected _head1: string;
-	protected _head: string;
-	protected _head3: string;
-	protected _body1: string;
-	protected _body2: string;
-	protected _arm1: string;
-	protected _arm2: string;
-	protected _arm3: string;
-	protected _arm4: string;
-	protected _leg1: string;
-	protected _leg2: string;
-	protected _wing: string;
-	protected _tail: string;
+	protected _head: IGene;
+	protected _body1: IGene;
+	protected _body2: IGene;
+	protected _arm1: IGene;
+	protected _arm2: IGene;
+	protected _arm3: IGene;
+	protected _arm4: IGene;
+	protected _leg1: IGene;
+	protected _leg2: IGene;
+	protected _wing: IGene;
+	protected _tail: IGene;
 
-	protected _headsList: string[] = ['Head1', 'Head2', 'Head3', 'Head4'];
-	protected _bodiesList: string[] = ['Torso1', 'Torso2', 'Torso3', 'Torso4'];
-	protected _armsList: string[] = ['Arm1', 'Arm2', 'Arm3', 'Arm4'];
-	protected _legsList: string[] = ['Leg1', 'Leg2', 'Leg3', 'Leg4'];
-	protected _tailsList: string[] = ['Tail1', 'Tail2', 'Tail3', 'Tail4'];
-	protected _wingsList: string[] = ['Wing1', 'Wing2', 'Wing3', 'Wing4'];
+	protected _baseStrength: number;
+	protected _baseDefense: number;
+	protected _baseSpeed: number;
+	protected _baseMagic: number;
+	protected _baseHealth: number;
 
 	constructor(orientation?: IOrientation, height?: IHeight, color?: string)
 	{
 		this.generateGene(orientation, height, color);
-
+		this._baseStrength = 10;
+		this._baseDefense = 10;
+		this._baseSpeed = 10;
+		this._baseMagic = 10;
+		this._baseHealth = 10;
 	}
 
 	private generateGene(
@@ -81,15 +89,15 @@ export class Gene implements IGene
 
 	private generateRandomHead(): void
 	{
-		this._head = this._headsList[Math.floor(Math.random() * this._headsList.length)];
+		this._head = HeadsList[Math.floor(Math.random() * HeadsList.length)];
 	}
 
 	private generateRandomTorso(): void
 	{
-		this._body1 = this._bodiesList[Math.floor(Math.random() * this._bodiesList.length)];
+		this._body1 = BodiesList[Math.floor(Math.random() * BodiesList.length)];
 		if (this._height === 'Tall')
 		{
-			this._body2 = this._bodiesList[Math.floor(Math.random() * this._bodiesList.length)];
+			this._body2 = BodiesList[Math.floor(Math.random() * BodiesList.length)];
 		}
 	}
 
@@ -117,7 +125,7 @@ export class Gene implements IGene
 		{
 			const index = Math.floor(Math.random() * armsRemaining.length);
 			const armNum = armsRemaining[index];
-			this[`_arm${armNum}`] = this._armsList[Math.floor(Math.random() * this._armsList.length)];
+			this[`_arm${armNum}`] = ArmsList[Math.floor(Math.random() * ArmsList.length)];
 			armsRemaining.splice(index, 1);
 		}
 	}
@@ -126,7 +134,7 @@ export class Gene implements IGene
 	{
 		if (Math.random() < 0.75)
 		{
-			this._leg1 = this._legsList[Math.floor(Math.random() * this._legsList.length)];
+			this._leg1 = LegsList[Math.floor(Math.random() * LegsList.length)];
 		}
 	}
 
@@ -134,7 +142,7 @@ export class Gene implements IGene
 	{
 		if (Math.random() < 0.66)
 		{
-			this._leg1 = this._legsList[Math.floor(Math.random() * this._legsList.length)];
+			this._leg1 = LegsList[Math.floor(Math.random() * LegsList.length)];
 		}
 	}
 
@@ -142,7 +150,7 @@ export class Gene implements IGene
 	{
 		if (Math.random() < 0.75)
 		{
-			this._leg2 = this._legsList[Math.floor(Math.random() * this._legsList.length)];
+			this._leg2 = LegsList[Math.floor(Math.random() * LegsList.length)];
 		}
 	}
 
@@ -150,7 +158,7 @@ export class Gene implements IGene
 	{
 		if (Math.random() < 0.5)
 		{
-			this._tail = this._tailsList[Math.floor(Math.random() * this._tailsList.length)];
+			this._tail = TailsList[Math.floor(Math.random() * TailsList.length)];
 		}
 	}
 
@@ -158,7 +166,7 @@ export class Gene implements IGene
 	{
 		if (Math.random() < 0.5)
 		{
-			this._wing = this._wingsList[Math.floor(Math.random() * this._wingsList.length)];
+			this._wing = WingsList[Math.floor(Math.random() * WingsList.length)];
 		}
 	}
 
@@ -176,4 +184,29 @@ export class Gene implements IGene
 	public get Leg2() { return this._leg2; }
 	public get Wing() { return this._wing; }
 	public get Tail() { return this._tail; }
+
+	public get Strength()
+	{
+		return this._baseStrength;
+	}
+
+	public get Speed()
+	{
+		return this._baseSpeed;
+	}
+
+	public get Health()
+	{
+		return this._baseHealth;
+	}
+
+	public get Magic()
+	{
+		return this._baseMagic;
+	}
+
+	public get Defense()
+	{
+		return this._baseDefense;
+	}
 }

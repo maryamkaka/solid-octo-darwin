@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IGene, Gene } from '../gene';
+import { IGeneSequence, Gene } from '../gene-sequence';
 
 @Component({
 	selector: 'app-generator-button',
@@ -9,7 +9,7 @@ import { IGene, Gene } from '../gene';
 export class GeneratorButtonComponent implements OnInit
 {
 
-	protected _gene: IGene;
+	protected _gene: IGeneSequence;
 	constructor() { }
 
 	ngOnInit()
