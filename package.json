@@ -1,0 +1,19 @@
+{
+  "name": "solid-octo-darwin",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryamkaka/solid-octo-darwin.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryamkaka/solid-octo-darwin/issues"
+  },
+  "homepage": "https://github.com/maryamkaka/solid-octo-darwin#readme"
+}
