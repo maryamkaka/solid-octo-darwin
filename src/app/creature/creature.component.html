@@ -1,8 +1,21 @@
-<div>
-  <div class="head icon icon-circle"></div>
-  <div class="body icon icon-square"></div>
-  <div class="body icon icon-square"></div>
-  <div class="body icon icon-more-colours">
-      <span class="path1"></span><span class="path2"></span><span class="path3"></span>
+<div class="grid vert" *ngIf="gene.Orientation === 'Vertical'">
+
+  <div [ngClass]="hidden"></div>
+  <div id="h1" [ngClass] = "[gene.Head2, 'icon']"></div>
+  <div [ngClass]="hidden"></div>
+
+  <div id="a1" [ngClass] = "[gene.Arm1, 'icon']"></div>
+  <div id="b1" [ngClass] = "[gene.Body1, 'icon']"></div>
+  <div id="a2" [ngClass] = "[gene.Arm2, 'icon']"></div>
+
+  <div id="a3" [ngClass] = "[gene.Arm3, 'icon']"></div>
+  <div id="b2" [ngClass] = "[gene.Body2, 'icon']"></div>
+  <div id="a4" [ngClass] = "[gene.Arm4, 'icon']"></div>
+
+  <div [ngClass]="hidden"></div>
+  <div id="l1" [ngClass] = "[gene.Leg1, 'icon']">
+    <span class="path1"></span><span class="path2"></span><span class="path3"></span>
   </div>
+  <div [ngClass]="hidden"></div>
+
 </div>
