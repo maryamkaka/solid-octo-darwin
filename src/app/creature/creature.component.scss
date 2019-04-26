@@ -1,0 +1,8 @@
+.grid {
+	$gridSize: 75px; 
+	font-size: $gridSize; 
+
+	display: grid;
+	grid-template-columns: $gridSize $gridSize $gridSize; 
+	grid-template-rows: $gridSize $gridSize $gridSize $gridSize; 
+}
