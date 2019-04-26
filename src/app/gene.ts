@@ -73,17 +73,34 @@ export class Gene implements IGene
 
 	private generateRandomHead(): void
 	{
-
+		const numHeads = Math.floor(Math.random() * 3) + 1;
+		if (numHeads > 1)
+		{
+			this._head1 = 'head1';
+		}
+		if (numHeads > 2)
+		{
+			this._head3 = 'head3';
+		}
+		this._head2 = 'head2';
 	}
 
 	private generateRandomTorso(): void
 	{
-
+		this._torso1 = 'First Torso';
+		if (this._height === 'Tall')
+		{
+			this._torso2 = 'secondTorso';
+		}
 	}
 
 	private generateRandomAppendages(): void
 	{
-
+		const numAppendages = Math.floor(Math.random() * 7);
+		for (let i = 0; i < numAppendages; i++)
+		{
+			this[`_appendage${i + 1}`] = `New Appendage ${i + 1}`;
+		}
 	}
 
 	public get Orientation() { return this._orientation; }
