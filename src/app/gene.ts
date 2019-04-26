@@ -41,4 +41,20 @@ export class Gene implements IGene
 	{
 
 	}
+
+	public get Orientation() { return this._orientation; }
+	public get Height() { return this._height; }
+	public get Color() { return this._color; }
+	public get Head1() { return this._head1; }
+	public get Head2() { return this._head2; }
+	public get Head3() { return this._head3; }
+	public get Torso1() { return this._torso1; }
+	public get Torso2() { return this._torso2; }
+	public get Appendage1() { return this._appendage1; }
+	public get Appendage2() { return this._appendage2; }
+	public get Appendage3() { return this._appendage3; }
+	public get Appendage4() { return this._appendage4; }
+	public get Appendage5() { return this._appendage5; }
+	public get Appendage6() { return this._appendage6; }
+	public get Appendage7() { return this._appendage7; }
 }
