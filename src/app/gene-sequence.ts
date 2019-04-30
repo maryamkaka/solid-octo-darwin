@@ -11,8 +11,8 @@ export interface IGeneSequence
 	Defense: number;
 	Magic: number;
 	Head: IGene;
-	Torso1: IGene;
-	Torso2?: IGene;
+	Body1: IGene;
+	Body2?: IGene;
 	Arm1?: IGene;
 	Arm2?: IGene;
 	Arm3?: IGene;
@@ -174,8 +174,8 @@ export class Gene implements IGeneSequence
 	public get Height() { return this._height; }
 	public get Color() { return this._color; }
 	public get Head() { return this._head; }
-	public get Torso1() { return this._body1; }
-	public get Torso2() { return this._body2; }
+	public get Body1() { return this._body1; }
+	public get Body2() { return this._body2; }
 	public get Arm1() { return this._arm1; }
 	public get Arm2() { return this._arm2; }
 	public get Arm3() { return this._arm3; }
@@ -187,26 +187,46 @@ export class Gene implements IGeneSequence
 
 	public get Strength()
 	{
-		return this._baseStrength;
+		return this.getGenes().map(gene => gene.str).reduce(this.reducer, this._baseStrength);
 	}
 
 	public get Speed()
 	{
-		return this._baseSpeed;
+		return this.getGenes().map(gene => gene.speed).reduce(this.reducer, this._baseSpeed);
 	}
 
 	public get Health()
 	{
-		return this._baseHealth;
+		return this.getGenes().map(gene => gene.hp).reduce(this.reducer, this._baseHealth);
 	}
 
 	public get Magic()
 	{
-		return this._baseMagic;
+		return this.getGenes().map(gene => gene.mgc).reduce(this.reducer, this._baseMagic);
 	}
 
 	public get Defense()
 	{
-		return this._baseDefense;
+		return this.getGenes().map(gene => gene.dfn).reduce(this.reducer, this._baseDefense);
 	}
+
+	private getGenes(): IGene[]
+	{
+		const limbs = [];
+		if (this._head) { limbs.push(this._head); }
+		if (this._body1) { limbs.push(this._body1); }
+		if (this._body2) { limbs.push(this._body2); }
+		if (this._arm1) { limbs.push(this._arm1); }
+		if (this._arm1) { limbs.push(this._arm1); }
+		if (this._arm2) { limbs.push(this._arm2); }
+		if (this._arm3) { limbs.push(this._arm3); }
+		if (this._arm4) { limbs.push(this._arm4); }
+		if (this._leg1) { limbs.push(this._leg1); }
+		if (this._leg2) { limbs.push(this._leg2); }
+		if (this._tail) { limbs.push(this._tail); }
+		if (this._wing) { limbs.push(this._wing); }
+		return limbs;
+	}
+
+	private reducer = (acc, curr) => acc + curr;
 }
